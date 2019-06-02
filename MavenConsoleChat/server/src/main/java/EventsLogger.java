@@ -27,4 +27,9 @@ public class EventsLogger {
         String msg = String.format("%s finished chatting with %s.", agentName, customsName);
         log.info(msg);
     }
+
+    public void logExceptionDisconnect(String name) {
+        String msg = String.format("%s quitted the system due to interruption.", name);
+        log.error(msg);
+    }
 }

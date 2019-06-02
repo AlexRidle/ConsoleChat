@@ -40,8 +40,10 @@
  */
 
 public interface TCPConnectionListener {
+    String NAMESFILEPATH = "../MavenConsoleChat/client/src/main/resources/names_file.txt";
     void connectionReady(TCPConnection connection, String reg);
     void receiveMessage(TCPConnection connection, String msg);
     void disConnect(TCPConnection connection);
     void occurException(TCPConnection connection, Exception e);
+
 }

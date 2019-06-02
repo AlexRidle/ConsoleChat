@@ -5,10 +5,10 @@ import java.util.*;
 
 public class ConsoleChatServer implements TCPConnectionListener {
     private static final int PORT = 19000;
-    private HashMap<TCPConnection, String> customersConnections;
-    private HashMap<TCPConnection, String> agentsConnections;
-    private Deque<TCPConnection> customsDeque;
-    private HashMap<TCPConnection, Story> missedMessages;
+    private volatile HashMap<TCPConnection, String> customersConnections;
+    private volatile HashMap<TCPConnection, String> agentsConnections;
+    private volatile Deque<TCPConnection> customsDeque;
+    private volatile HashMap<TCPConnection, Story> missedMessages;
     private EventsLogger eventsLogger;
 
     public static void main(String[] args) throws IOException {
@@ -42,17 +42,29 @@ public class ConsoleChatServer implements TCPConnectionListener {
             if (reg.split(" ")[1].equals("client")) {
                 String dtime = "(" + new SimpleDateFormat("HH:mm:ss").format(new Date()) + ")";
                 System.out.println(dtime + " Customer " + reg.split(" ")[2] + " is connected. Connection: " +connection);
+                // добавление нового подключения для клиента
                 customersConnections.put(connection, reg.substring(10));
                 // Логирование появления в сети клиента
                 eventsLogger.logConnection(reg.substring(10));
                 // поиск свободного агента
                 TCPConnection agent = getAgent();
                 if (agent != null) {
-                    String agentName = agentsConnections.get(agent).substring(0, agentsConnections.get(agent).indexOf(" false"));
-                    connection.sendMessage(String.format("/%s: Hello %s! You have been connected to console chat at %s. " +
-                            "How can I help you? For quit the currently chat - /leave", agentName, reg.split(" ")[2], dtime));
-                    // Логирование начала чата со свободным агентом
-                    eventsLogger.logStartingChat(agentName, reg.substring(10));
+                    String clientName = customersConnections.get(connection);
+                    // Направляем свободному агенту ссылку для установления связи с клиентом
+                    agent.sendMessage(String.format("You started chatting with %s", clientName));
+                    agent.sendMessage(String.format("/%s:", clientName));
+                    // Проверяем, не разорвал ли соединение агент
+                    if (agentsConnections.containsKey(agent)) {
+                        String agentName = agentsConnections.get(agent).substring(0, agentsConnections.get(agent).indexOf(" false"));
+                        connection.sendMessage(String.format("/%s: Hello %s! You have been connected to console chat at %s. " +
+                                "How can I help you? For quit the currently chat - /leave", agentName, reg.split(" ")[2], dtime));
+                        // Логирование начала чата со свободным агентом
+                        eventsLogger.logStartingChat(agentName, reg.substring(10));
+                    } else {
+                        connection.sendMessage(dtime + " Congratulations, " + reg.split(" ")[2] + "! " +
+                                "You are connected to console chat.");
+                    }
+
                 } else {
                     connection.sendMessage(dtime + " Congratulations, " + reg.split(" ")[2] + "! " +
                             "You are connected to console chat.");
@@ -62,18 +74,41 @@ public class ConsoleChatServer implements TCPConnectionListener {
                 System.out.println(dtime + " Agent " + reg.split(" ")[2] + " is connected. Connection: " +connection);
                 // Логирование появления в сети агента
                 eventsLogger.logConnection(reg.substring(10));
+
+                // проверяем, есть ли не отвеченные письма
                 if (customsDeque.size() > 0) {
-                    TCPConnection customer = customsDeque.removeFirst();
+                    // устанавливаем статус для агента - занят
                     agentsConnections.put(connection, reg.substring(10) + " false");
+                    // получаем из карты по ключу имя агента
                     String agentName = agentsConnections.get(connection).substring(0, agentsConnections.get(connection).indexOf(" false"));
-                    connection.sendMessage(dtime + " Congratulations, " + reg.split(" ")[2] + "! " +
-                            "You are connected like an agent. You have already had some history messages:");
-                    Story story = missedMessages.get(customer);
-                    connection.sendMessage(story.printStory());
-                    customer.sendMessage("/" + agentName + ":");
-                    missedMessages.remove(customer);
-                    // Логирование начала чата с ожидающим клиентом
-                    eventsLogger.logStartingChat(agentName, reg.substring(10));
+                    // проверяем в цикле не остались ли висеть в очереди клиенты, которые некорректно завершили соединение
+                    while (customsDeque.size() > 0) {
+                        // Получаем первого клиента из очереди, от которого были пропущены сообщения
+                        TCPConnection customer = customsDeque.removeFirst();
+                        // направляем клиенту информацию о свободном агенте для установления связи с ним
+                        customer.sendMessage(String.format("The %s will connect with you in no time.", agentName));
+                        customer.sendMessage(String.format("/%s:", agentName));
+                        // проверяем, доступен ли еще клиент для связи
+                        if (missedMessages.containsKey(customer)) {
+                            // направляем агенту информацию о пропущенных от клиента письмах
+                            connection.sendMessage(dtime + " Congratulations, " + reg.split(" ")[2] + "! " +
+                                    "You are connected like an agent. You have already had some history messages:");
+                            Story story = missedMessages.get(customer);
+                            connection.sendMessage(story.printStory());
+                            missedMessages.remove(customer);
+                            // Логирование начала чата с ожидающим клиентом
+                            eventsLogger.logStartingChat(agentName, reg.substring(10));
+                            break;
+                        }
+
+                        if (customsDeque.size() == 0) {
+                            // устанавливаем статус для агента - доступен, при отсутствии не отвеченных писем
+                            agentsConnections.replace(connection, agentsConnections.get(connection), reg.substring(10) + " true");
+                            connection.sendMessage(dtime + " Congratulations, " + reg.split(" ")[2] + "! " +
+                                    "You are connected like an agent.");
+
+                        }
+                    }
                 } else {
                     agentsConnections.put(connection, reg.substring(10) + " true");
                     connection.sendMessage(dtime + " Congratulations, " + reg.split(" ")[2] + "! " +
@@ -105,36 +140,82 @@ public class ConsoleChatServer implements TCPConnectionListener {
                 connection.sendMessage(msg);
             } else if (msg.startsWith("/register")) {
                 connectionReady(connection, msg);
+                // сообщение направлено от агента
             } else if (msg.startsWith("/client")) {
                 for (Map.Entry<TCPConnection, String> pair : customersConnections.entrySet()) {
+                    // из мапы по имени находим клиента, которому адресовано сообщение
                     if (pair.getValue().equals(msg.substring(1, msg.indexOf("/agent")))) {
                         if (msg.endsWith("/exit")) {
                             msg = String.format("Unfortunately, %s %s has been disconnected. Try to connect with other agent " +
                                             "or input - /exit", agentsConnections.get(connection).split(" ")[0],
                                     agentsConnections.get(connection).split(" ")[1]);
+                            // направляем клиенту сообщение о разорванном соединении
                             pair.getKey().sendMessage(msg);
-                            String agentsName = agentsConnections.get(connection).replace(" false", "");
+                            String agentName = agentsConnections.get(connection).replace(" false", "");
                             // логирование выхода агента из системы
-                            eventsLogger.logDisconnect(agentsName);
-                            // логирование завершения чата с клиентом
-                            eventsLogger.logFinishingChat(agentsName, customersConnections.get(pair.getKey()));
-
+                            eventsLogger.logDisconnect(agentName);
+                            // Проверка на Null
+                            if (customersConnections.containsKey(pair.getKey())) {
+                                // логирование завершения чата с клиентом
+                                String clientName = customersConnections.get(pair.getKey());
+                                eventsLogger.logFinishingChat(agentName, clientName);
+                            }
+                            // направляем агенту ключевое слово для корректного завершения соединения и освобождения ресурсов
                             connection.sendMessage("/exit");
+                            // удаляем из мапы информацию о агенте
                             disConnect(connection);
                             return;
+
                         } else {
                             System.out.println(msg.substring(msg.indexOf("/agent")));
+                            // направляем клиенту полученное от агента сообщение
                             pair.getKey().sendMessage(msg.substring(msg.indexOf("/agent")));
+                            // проверяем целостность соединения на случай не корректного его завершения клиентом
+                            if (!customersConnections.containsKey(pair.getKey())) {
+                                // Отправляем агенту сообщение о некорректно прерванном соединении
+                                connection.sendMessage(String.format("Unfortunately, %s incorrect interrupted this connection",
+                                        msg.substring(0, msg.indexOf("/agent"))));
+                                // в случае некорректного завершения соединения клиентом, проверяем список неотвеченных сообщений
+                                if (customsDeque.size() > 0) {
+                                    String agentName = agentsConnections.get(connection).replace(" false", "");
+                                    while (customsDeque.size() > 0) {
+                                        // Получаем первого клиента из очереди, от которого были пропущены сообщения
+                                        TCPConnection customer = customsDeque.removeFirst();
+                                        // Клиенту направляем ссылку на агента для установления связи
+                                        customer.sendMessage(String.format("The %s will connect with you in no time.", agentName));
+                                        customer.sendMessage(String.format("/%s:", agentName));
+                                        if (missedMessages.containsKey(customer)) {
+                                            connection.sendMessage("You have had some history messages:");
+                                            // Получаем экземпляр класса, в котором содержатся пропущенные сообщения
+                                            Story story = missedMessages.get(customer);
+                                            // Направляем агенту пропущенные сообщения
+                                            connection.sendMessage(story.printStory());
+                                            // Удаляем из списка пропущенных сообщений
+                                            missedMessages.remove(customer);
+                                            break;
+                                        }
+                                        if (customsDeque.size() == 0) {
+                                            agentsConnections.replace(connection, agentsConnections.get(connection),
+                                                    agentsConnections.get(connection).replace("false", "true"));
+                                        }
+                                    }
+                                } else {
+                                    // Меняем статус на доступный
+                                    agentsConnections.replace(connection, agentsConnections.get(connection),
+                                            agentsConnections.get(connection).replace("false", "true"));
+                                }
+                                return;
+
+                            }
                         }
                     }
                 }
+                // сообщение направлено от клиента
             } else if (msg.startsWith("/agent")) {
                 // проходим в цикле по всем соединениям для агентов
                 for (Map.Entry<TCPConnection, String> pair : agentsConnections.entrySet()) {
-                    /*
-                     если первая часть отправленного сообщения равна одному из значений из коллекции, значит сообщение,
-                     будет адресовано данному агенту
-                      */
+                     /* если первая часть отправленного сообщения равна одному из значений из коллекции, значит сообщение,
+                     будет адресовано данному агенту */
                     if (pair.getValue().equals(msg.substring(1, msg.indexOf("/client")) + " false")) {
                         if (msg.endsWith("/exit")) {
                             // Агенту направляется уведомление о разрыве соединения с конкретным клиентом
@@ -142,29 +223,41 @@ public class ConsoleChatServer implements TCPConnectionListener {
                                             "or input - /exit", customersConnections.get(connection).split(" ")[0],
                                     customersConnections.get(connection).split(" ")[1]);
                             pair.getKey().sendMessage(msg);
-                            String agentsName = agentsConnections.get(pair.getKey()).replace(" false", "");
+                            // проверка на NullPointerException, если агент некорректно завершил соединение
+                            if (agentsConnections.containsKey(pair.getKey())) {
+                                String agentName = agentsConnections.get(pair.getKey()).replace(" false", "");
+                                // логирование завершения чата с клиентом
+                                eventsLogger.logFinishingChat(agentName, customersConnections.get(connection));
+                            }
                             // логирование выхода клиента из системы
                             eventsLogger.logDisconnect(customersConnections.get(connection));
-                            // логирование завершения чата с клиентом
-                            eventsLogger.logFinishingChat(agentsName, customersConnections.get(connection));
-
                             // Клиенту направляется ключевое слово exit для возможности остановки потока-слушателя клиента
                             connection.sendMessage("/exit");
                             // из клиентской коллекции удаляется информация о соединении с этим клиентом, от которого пришло письмо
                             disConnect(connection);
-                            if (customsDeque.size() > 0) {
-                                // Получаем первого клиента из очереди, от которого были пропущены сообщения
-                                TCPConnection customer = customsDeque.removeFirst();
-                                // Получаем экземпляр класса, в котором содержатся пропущенные сообщения
-                                Story story = missedMessages.get(customer);
+
+                            if (agentsConnections.containsKey(pair.getKey()) && customsDeque.size() > 0) {
                                 String agentName = pair.getValue().substring(0, pair.getValue().indexOf(" false"));
-                                pair.getKey().sendMessage("You have had some history messages:");
-                                // Направляем агенту пропущенные сообщения
-                                pair.getKey().sendMessage(story.printStory());
-                                // Клиенту направляем ссылку на агента для установления связи
-                                customer.sendMessage("/" + agentName + ":");
-                                // Удаляем из списка пропущенных сообщений
-                                missedMessages.remove(customer);
+                                while (customsDeque.size() > 0) {
+                                    // Получаем первого клиента из очереди, от которого были пропущены сообщения
+                                    TCPConnection customer = customsDeque.removeFirst();
+                                    // Клиенту направляем ссылку на агента для установления связи
+                                    customer.sendMessage(String.format("The %s will connect with you in no time.", agentName));
+                                    customer.sendMessage(String.format("/%s:", agentName));
+                                    if (missedMessages.containsKey(customer)) {
+                                        pair.getKey().sendMessage("You have had some history messages:");
+                                        // Получаем экземпляр класса, в котором содержатся пропущенные сообщения
+                                        Story story = missedMessages.get(customer);
+                                        // Направляем агенту пропущенные сообщения
+                                        pair.getKey().sendMessage(story.printStory());
+                                        // Удаляем из списка пропущенных сообщений
+                                        missedMessages.remove(customer);
+                                        break;
+                                    }
+                                    if (customsDeque.size() == 0) {
+                                        pair.setValue(pair.getValue().replace("false", "true"));
+                                    }
+                                }
                             } else {
                                 // Агенту в коллекции устанавливается статус true (доступен)
                                 pair.setValue(pair.getValue().replace("false", "true"));
@@ -177,34 +270,63 @@ public class ConsoleChatServer implements TCPConnectionListener {
                                             "or input - /exit", customersConnections.get(connection).split(" ")[0],
                                     customersConnections.get(connection).split(" ")[1]);
                             pair.getKey().sendMessage(msg);
-                            String agentsName = agentsConnections.get(pair.getKey()).replace(" false", "");
-                            // логирование завершения чата с клиентом
-                            eventsLogger.logFinishingChat(agentsName, customersConnections.get(connection));
 
-                            if (customsDeque.size() > 0) {
-                                TCPConnection customer = customsDeque.removeFirst();
-                                Story story = missedMessages.get(customer);
+                            // проверка на NullPointerException, если агент некорректно завершил соединение
+                            if (agentsConnections.containsKey(pair.getKey())) {
+                                String agentName = agentsConnections.get(pair.getKey()).replace(" false", "");
+                                // логирование завершения чата с клиентом
+                                eventsLogger.logFinishingChat(agentName, customersConnections.get(connection));
+                            }
+
+                            if (agentsConnections.containsKey(pair.getKey()) && customsDeque.size() > 0) {
                                 String agentName = pair.getValue().substring(0, pair.getValue().indexOf(" false"));
-                                pair.getKey().sendMessage("You have had some history messages:");
-                                pair.getKey().sendMessage(story.printStory());
-                                customer.sendMessage("/" + agentName + ":");
-                                missedMessages.remove(customer);
+                                while (customsDeque.size() > 0) {
+                                    // Получаем первого клиента из очереди, от которого были пропущены сообщения
+                                    TCPConnection customer = customsDeque.removeFirst();
+                                    // Клиенту направляем ссылку на агента для установления связи
+                                    customer.sendMessage(String.format("The %s will connect with you in no time.", agentName));
+                                    customer.sendMessage(String.format("/%s:", agentName));
+                                    if (missedMessages.containsKey(customer)) {
+                                        pair.getKey().sendMessage("You have had some history messages:");
+                                        // Получаем экземпляр класса, в котором содержатся пропущенные сообщения
+                                        Story story = missedMessages.get(customer);
+                                        // Направляем агенту пропущенные сообщения
+                                        pair.getKey().sendMessage(story.printStory());
+                                        // Удаляем из списка пропущенных сообщений
+                                        missedMessages.remove(customer);
+                                        break;
+                                    }
+                                    if (customsDeque.size() == 0) {
+                                        pair.setValue(pair.getValue().replace("false", "true"));
+                                    }
+                                }
                             } else {
+                                // Агенту в коллекции устанавливается статус true (доступен)
                                 pair.setValue(pair.getValue().replace("false", "true"));
                             }
                             return;
 
                         } else {
+                            // выводим полученное от клиента сообщение
                             System.out.println(msg.substring(msg.indexOf("/client")));
+                            // направляем агенту сообщение от клиента
                             pair.getKey().sendMessage(msg.substring(msg.indexOf("/client")));
+                            // проверка доступности соединения с агентом
+                            if (!agentsConnections.containsKey(pair.getKey())) {
+                                // При выброшенном исключении о недоступности соединения клиенту отправляется об этом информация
+                                connection.sendMessage(String.format("Unfortunately, %s incorrect interrupted this connection",
+                                        msg.substring(0, msg.indexOf("/client"))));
+                                return;
+                            }
                         }
                     }
                 }
+
             } else {
                 if (customersConnections.containsKey(connection)) {
                     System.out.println(customersConnections.get(connection)+ ": " + msg);
                     TCPConnection agent = getAgent();
-                    if (agent != null) {
+                    if (agent != null && agentsConnections.containsKey(agent)) {
                         agent.sendMessage("/" + customersConnections.get(connection) + ": " + msg);
                         String agentName = agentsConnections.get(agent).substring(0, agentsConnections.get(agent).indexOf(" false"));
                         connection.sendMessage("/" +agentName + ":");
@@ -213,9 +335,9 @@ public class ConsoleChatServer implements TCPConnectionListener {
 
                     } else {
                         if (!customsDeque.contains(connection)) {
-                            // добавляем клиента в очередь, при отсутствии свободных клиентов
+                            // добавляем клиента в очередь, при отсутствии свободных агентов
                             customsDeque.add(connection);
-                            // добавляем клиента в колекцию, содержащую пропущенные от него сообщения
+                            // добавляем клиента в коллекцию, содержащую пропущенные от него сообщения
                             missedMessages.put(connection, new Story());
                         }
                         Story story = missedMessages.get(connection);
@@ -249,7 +371,25 @@ public class ConsoleChatServer implements TCPConnectionListener {
 
     @Override
     public synchronized void occurException(TCPConnection connection, Exception e) {
-        System.out.println("TCPConnection Exception: " +e);
+        if (customersConnections.containsKey(connection)) {
+            // логируем выход клиента из системы в результате возникшего исключения
+            eventsLogger.logExceptionDisconnect(customersConnections.get(connection));
+            // удаляем клиента из карты соединений
+            customersConnections.remove(connection);
+            if (missedMessages.containsKey(connection)) {
+                Story story = missedMessages.get(connection);
+                // логируем пропущенные сообщения
+                eventsLogger.logLostMessages(customersConnections.get(connection), story.printStory());
+                // очищаем список пропущенных сообщений
+                missedMessages.remove(connection);
+            }
+        } else if (agentsConnections.containsKey(connection)) {
+            // логируем выход клиента из системы в результате возникшего исключения
+            eventsLogger.logExceptionDisconnect(agentsConnections.get(connection));
+            // удаляем агента из карты соединений
+            agentsConnections.remove(connection);
+        }
+        System.out.println("Server TCPConnection Exception: " +e);
     }
 
     private TCPConnection getAgent() {
@@ -261,4 +401,5 @@ public class ConsoleChatServer implements TCPConnectionListener {
         }
         return null;
     }
+
 }

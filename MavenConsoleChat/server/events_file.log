@@ -1,5 +1,0 @@
-2019-05-30 17:05:50 INFO  ConsoleChatServer:8 - client cl registered in the system.
-2019-05-30 17:06:02 INFO  ConsoleChatServer:13 - client cl quitted the system.
-2019-05-30 17:06:02 WARN  ConsoleChatServer:23 - Messages from the client cl remained unresponded: /client cl: hello.
-2019-05-30 17:06:20 INFO  ConsoleChatServer:8 - agent ag1 registered in the system.
-2019-05-30 17:06:29 INFO  ConsoleChatServer:13 - agent ag1 quitted the system.

@@ -33,12 +33,16 @@ public class Client implements TCPConnectionListener {
                 reg = reader.readLine();
                 if (reg.equals("")) {
                     System.out.println("Name can't be empty value, try again or finish the session - /exit");
-                } else if (reg.equals(reg.trim().equals("/exit"))) {
+                } else if (reg.trim().equals("/exit")) {
                     disConnect(connection);
                     return;
                 } else {
-                    this.name = reg;
-                    break;
+                    if (CheckNames.addName(reg)) {
+                        System.out.println("Such name is Existed, try again or finish the session - /exit");
+                    } else {
+                        this.name = reg;
+                        break;
+                    }
                 }
             }
 
@@ -52,6 +56,7 @@ public class Client implements TCPConnectionListener {
                     register = Register.CLIENT.getTitle();
                     break;
                 } else if (reg.trim().equals("/exit")) {
+                    CheckNames.removeName(this.name);
                     disConnect(connection);
                     return;
                 } else {
@@ -68,12 +73,15 @@ public class Client implements TCPConnectionListener {
     @Override
     public void receiveMessage(TCPConnection connection, String msg) {
         if (msg.equals("/exit")) {
+            CheckNames.removeName(this.name);
             disConnect(connection);
             return;
         }
         // Если строка получена от клиента
         if (msg.startsWith("/client")) {
-            System.out.println(msg);
+            if (!"".equals(msg.substring(msg.indexOf(':')+1))) {
+                System.out.println(msg);
+            }
             // Формируем префиксную строку для идентификации нашего клиента на сервере
             String formatAgent = msg.substring(0, msg.indexOf(':')) + String.format("/%s %s: ", register, name);
             prefix = formatAgent;
@@ -98,7 +106,7 @@ public class Client implements TCPConnectionListener {
 
     @Override
     public void occurException(TCPConnection connection, Exception e) {
-        System.out.println("TCPConnection Exception: " +e);
+        System.out.println("Client TCPConnection Exception: " +e);
     }
 
     private void createThreadWriter(TCPConnection connection) {
