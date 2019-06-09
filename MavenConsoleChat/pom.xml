@@ -12,6 +12,7 @@
         <module>network</module>
         <module>server</module>
         <module>client</module>
+        <module>webclient</module>
     </modules>
 
     <dependencies>

@@ -1,4 +1,4 @@
-Register.class
-Client$1.class
-CheckNames.class
-Client.class
+org/maksim/chakur/client/Client.class
+org/maksim/chakur/client/Register.class
+org/maksim/chakur/client/Client$1.class
+org/maksim/chakur/client/CheckNames.class

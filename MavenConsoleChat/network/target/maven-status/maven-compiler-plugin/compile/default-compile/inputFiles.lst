@@ -1,2 +1,2 @@
-/Users/maksim/Documents/TestTasks/MavenConsoleChat/network/src/main/java/TCPConnection.java
-/Users/maksim/Documents/TestTasks/MavenConsoleChat/network/src/main/java/TCPConnectionListener.java
+/Users/maksim/Documents/JavaEE/MavenConsoleChat/network/src/main/java/org/maksim/chakur/network/TCPConnectionListener.java
+/Users/maksim/Documents/JavaEE/MavenConsoleChat/network/src/main/java/org/maksim/chakur/network/TCPConnection.java

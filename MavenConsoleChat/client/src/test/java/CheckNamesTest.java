@@ -2,6 +2,8 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.maksim.chakur.client.CheckNames;
+import org.maksim.chakur.network.TCPConnectionListener;
 
 import java.io.BufferedOutputStream;
 import java.io.File;

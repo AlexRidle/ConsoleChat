@@ -1,8 +1,0 @@
-2019-06-02 23:54:30 INFO  ConsoleChatServer:8 - agent agent registered in the system.
-2019-06-02 23:55:47 INFO  ConsoleChatServer:8 - client client registered in the system.
-2019-06-02 23:55:47 INFO  ConsoleChatServer:18 - agent agent started chatting with client client.
-2019-06-02 23:57:39 INFO  ConsoleChatServer:28 - agent agent finished chatting with client client.
-2019-06-02 23:58:08 INFO  ConsoleChatServer:18 - agent agent started chatting with client client.
-2019-06-02 23:59:13 INFO  ConsoleChatServer:28 - agent agent finished chatting with client client.
-2019-06-02 23:59:13 INFO  ConsoleChatServer:13 - client client quitted the system.
-2019-06-02 23:59:20 INFO  ConsoleChatServer:13 - agent agent quitted the system.

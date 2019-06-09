@@ -9,7 +9,12 @@
         <module name="client" />
         <module name="network" />
         <module name="server" />
+        <module name="webclient" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="runChatServer" target="1.8" />
+      <module name="startServer" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

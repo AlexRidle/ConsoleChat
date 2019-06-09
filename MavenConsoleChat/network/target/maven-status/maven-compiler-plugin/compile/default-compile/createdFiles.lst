@@ -1,3 +1,3 @@
-TCPConnectionListener.class
-TCPConnection.class
-TCPConnection$1.class
+org/maksim/chakur/network/TCPConnection$1.class
+org/maksim/chakur/network/TCPConnectionListener.class
+org/maksim/chakur/network/TCPConnection.class
