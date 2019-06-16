@@ -1,2 +1,9 @@
-org/maksim/chakur/servlet/WebClient.class
+org/maksim/chakur/servlet/User.class
+org/maksim/chakur/servlet/CheckUser.class
+org/maksim/chakur/servlet/AddUser.class
+org/maksim/chakur/servlet/UserList.class
 org/maksim/chakur/servlet/ClientService.class
+org/maksim/chakur/endpoints/ChatServerEndpoint$1.class
+org/maksim/chakur/endpoints/ChatServerEndpoint.class
+org/maksim/chakur/servlet/Dispatcher.class
+org/maksim/chakur/servlet/UserRegistration.class

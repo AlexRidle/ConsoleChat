@@ -48,26 +48,28 @@
     <session id="-1044203705">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="5" />
+          <entry key="project.closed" value="7" />
           <entry key="project.open.time.2" value="1" />
           <entry key="project.open.time.3" value="2" />
+          <entry key="project.open.time.4" value="1" />
           <entry key="project.open.time.5" value="1" />
+          <entry key="project.open.time.6" value="1" />
           <entry key="project.open.time.7" value="1" />
-          <entry key="project.opened" value="5" />
+          <entry key="project.opened" value="7" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JAVA" value="9" />
+          <entry key="JAVA" value="21" />
           <entry key="JSP" value="1" />
-          <entry key="PLAIN_TEXT" value="3" />
-          <entry key="XML" value="4" />
+          <entry key="PLAIN_TEXT" value="4" />
+          <entry key="XML" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="253" />
-          <entry key="XML" value="13" />
+          <entry key="JAVA" value="1305" />
+          <entry key="XML" value="124" />
         </counts>
       </usages-collector>
     </session>
@@ -77,29 +79,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/webclient/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="286">
-              <caret line="27" column="30" selection-start-line="27" selection-start-column="30" selection-end-line="27" selection-end-column="30" />
+            <state relative-caret-position="660">
+              <caret line="44" column="38" selection-start-line="44" selection-start-column="38" selection-end-line="44" selection-end-column="38" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/src/main/java/org/maksim/chakur/client/Client.java">
+        <entry file="file://$PROJECT_DIR$/server/src/main/java/org/maksim/chakur/server/ConsoleChatServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="786">
-              <caret line="112" column="35" selection-start-line="112" selection-start-column="35" selection-end-line="112" selection-end-column="35" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/webclient/src/main/java/org/maksim/chakur/servlet/WebClient.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="825">
-              <caret line="55" selection-start-line="55" selection-end-line="55" />
+            <state relative-caret-position="135">
+              <caret line="22" column="33" lean-forward="true" selection-start-line="22" selection-start-column="33" selection-end-line="22" selection-end-column="33" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -108,36 +98,34 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/client/src/main/java/org/maksim/chakur/client/Client.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="195">
+              <caret line="13" column="34" lean-forward="true" selection-start-line="13" selection-start-column="34" selection-end-line="13" selection-end-column="34" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/webclient/src/main/java/org/maksim/chakur/servlet/ClientService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-398">
+            <state relative-caret-position="195">
               <caret line="13" column="27" selection-start-line="13" selection-start-column="27" selection-end-line="13" selection-end-column="27" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#2453#2454#0" expanded="true" />
-                <element signature="e#2482#2483#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/network/src/main/java/org/maksim/chakur/network/TCPConnection.java">
+        <entry file="file://$PROJECT_DIR$/webclient/src/main/java/org/maksim/chakur/endpoints/ChatServerEndpoint.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-395">
-              <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/src/main/java/org/maksim/chakur/server/ConsoleChatServer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4976">
-              <caret line="396" column="35" selection-start-line="396" selection-start-column="35" selection-end-line="396" selection-end-column="35" />
+            <state relative-caret-position="675">
+              <caret line="47" column="70" selection-start-line="47" selection-start-column="70" selection-end-line="47" selection-end-column="70" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -152,8 +140,8 @@
       <list>
         <option value="Interface" />
         <option value="Enum" />
-        <option value="JUnit4 Test Class" />
         <option value="Class" />
+        <option value="JUnit4 Test Class" />
       </list>
     </option>
   </component>
@@ -179,7 +167,6 @@
         <option value="$PROJECT_DIR$/server/src/main/java/EventsLogger.java" />
         <option value="$PROJECT_DIR$/client/src/main/resources/names_file.txt" />
         <option value="$PROJECT_DIR$/server/src/main/java/ConsoleChatServer.java" />
-        <option value="$PROJECT_DIR$/server/src/main/resources/events_file.log" />
         <option value="$PROJECT_DIR$/client/pom.xml" />
         <option value="$PROJECT_DIR$/client/src/main/java/Client.java" />
         <option value="$PROJECT_DIR$/runChatServer/pom.xml" />
@@ -187,11 +174,16 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/network/src/main/java/org/maksim/chakur/network/TCPConnectionListener.java" />
         <option value="$PROJECT_DIR$/client/src/main/java/org/maksim/chakur/client/CheckNames.java" />
-        <option value="$PROJECT_DIR$/webclient/pom.xml" />
         <option value="$PROJECT_DIR$/client/src/main/java/org/maksim/chakur/client/Client.java" />
         <option value="$PROJECT_DIR$/server/src/main/java/org/maksim/chakur/server/ConsoleChatServer.java" />
         <option value="$PROJECT_DIR$/webclient/src/main/java/org/maksim/chakur/servlet/WebClient.java" />
         <option value="$PROJECT_DIR$/webclient/src/main/java/org/maksim/chakur/servlet/ClientService.java" />
+        <option value="$PROJECT_DIR$/webclient/src/main/java/org/maksim/chakur/endpoints/ChatServerEndpoint.java" />
+        <option value="$PROJECT_DIR$/webclient/src/main/java/org/maksim/chakur/servlet/User.java" />
+        <option value="$PROJECT_DIR$/webclient/src/main/java/org/maksim/chakur/servlet/UserList.java" />
+        <option value="$PROJECT_DIR$/webclient/src/test/java/org/maksim/chakur/servlet/UserListTest.java" />
+        <option value="$PROJECT_DIR$/webclient/pom.xml" />
+        <option value="$PROJECT_DIR$/server/src/main/resources/events_file.log" />
       </list>
     </option>
   </component>
@@ -218,10 +210,10 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="y" value="23" />
     <option name="width" value="1440" />
-    <option name="height" value="821" />
+    <option name="height" value="807" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -229,6 +221,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -282,6 +276,21 @@
             <path>
               <item name="consoleChat" type="b2602c69:ProjectViewProjectNode" />
               <item name="MavenConsoleChat" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="consoleChat" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MavenConsoleChat" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="consoleChat" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MavenConsoleChat" type="462c0819:PsiDirectoryNode" />
               <item name="network" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -360,6 +369,21 @@
             <path>
               <item name="consoleChat" type="b2602c69:ProjectViewProjectNode" />
               <item name="MavenConsoleChat" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="consoleChat" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MavenConsoleChat" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="consoleChat" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MavenConsoleChat" type="462c0819:PsiDirectoryNode" />
               <item name="webclient" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -390,18 +414,42 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="chakur" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="consoleChat" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MavenConsoleChat" type="462c0819:PsiDirectoryNode" />
+              <item name="webclient" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="chakur" type="462c0819:PsiDirectoryNode" />
+              <item name="endpoints" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="consoleChat" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MavenConsoleChat" type="462c0819:PsiDirectoryNode" />
+              <item name="webclient" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="chakur" type="462c0819:PsiDirectoryNode" />
               <item name="servlet" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="consoleChat" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MavenConsoleChat" type="462c0819:PsiDirectoryNode" />
+              <item name="webclient" type="462c0819:PsiDirectoryNode" />
+              <item name="target" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1559832796217" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1560709077016" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -412,6 +460,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="org.maksim.chakur.servlet" />
       <recent name="" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
@@ -438,7 +487,12 @@
     <configuration name="Client" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.maksim.chakur.client.Client" />
       <module name="client" />
-      <option name="PROGRAM_PARAMETERS" value="$PROJECT_DIR$/client/names_file.txt" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.maksim.chakur.client.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -446,52 +500,78 @@
     <configuration name="ConsoleChatServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.maksim.chakur.server.ConsoleChatServer" />
       <module name="server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.maksim.chakur.server.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CheckNamesTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="client" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="CheckNamesTest" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="CheckNamesTest.addName" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="client" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="CheckNamesTest" />
-      <option name="METHOD_NAME" value="addName" />
+    <configuration name="UserListTest.addUser" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="webclient" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.maksim.chakur.servlet.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.maksim.chakur.servlet" />
+      <option name="MAIN_CLASS_NAME" value="org.maksim.chakur.servlet.UserListTest" />
+      <option name="METHOD_NAME" value="addUser" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CheckNamesTest.removeName" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="client" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="CheckNamesTest" />
-      <option name="METHOD_NAME" value="removeName" />
+    <configuration name="UserListTest.findUser" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="webclient" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.maksim.chakur.servlet.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.maksim.chakur.servlet" />
+      <option name="MAIN_CLASS_NAME" value="org.maksim.chakur.servlet.UserListTest" />
+      <option name="METHOD_NAME" value="findUser" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserListTest.getUsers_NO_NULL" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="webclient" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.maksim.chakur.servlet.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.maksim.chakur.servlet" />
+      <option name="MAIN_CLASS_NAME" value="org.maksim.chakur.servlet.UserListTest" />
+      <option name="METHOD_NAME" value="getUsers_NO_NULL" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
+      <item itemvalue="JUnit.UserListTest.addUser" />
+      <item itemvalue="JUnit.UserListTest.findUser" />
+      <item itemvalue="JUnit.UserListTest.getUsers_NO_NULL" />
       <item itemvalue="Application.ConsoleChatServer" />
       <item itemvalue="Application.Client" />
-      <item itemvalue="JUnit.CheckNamesTest.addName" />
-      <item itemvalue="JUnit.CheckNamesTest.removeName" />
-      <item itemvalue="JUnit.CheckNamesTest" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Client" />
         <item itemvalue="Application.ConsoleChatServer" />
-        <item itemvalue="JUnit.CheckNamesTest.removeName" />
-        <item itemvalue="JUnit.CheckNamesTest.addName" />
-        <item itemvalue="JUnit.CheckNamesTest" />
+        <item itemvalue="JUnit.UserListTest.getUsers_NO_NULL" />
+        <item itemvalue="JUnit.UserListTest.findUser" />
+        <item itemvalue="JUnit.UserListTest.addUser" />
       </list>
     </recent_temporary>
   </component>
@@ -509,42 +589,42 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="CheckNamesTest_addName - 2019.06.02 at 00h 00m 28s.xml">
-      <configuration name="CheckNamesTest.addName" configurationId="JUnit" />
+    <history-entry file="UserListTest_addUser - 2019.06.16 at 20h 41m 34s.xml">
+      <configuration name="UserListTest.addUser" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="CheckNamesTest_removeName - 2019.06.02 at 00h 00m 39s.xml">
-      <configuration name="CheckNamesTest.removeName" configurationId="JUnit" />
+    <history-entry file="UserListTest_findUser - 2019.06.16 at 20h 41m 41s.xml">
+      <configuration name="UserListTest.findUser" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="CheckNamesTest_addName - 2019.06.02 at 00h 02m 03s.xml">
-      <configuration name="CheckNamesTest.addName" configurationId="JUnit" />
+    <history-entry file="UserListTest_findUser - 2019.06.16 at 20h 43m 23s.xml">
+      <configuration name="UserListTest.findUser" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="CheckNamesTest_removeName - 2019.06.02 at 00h 02m 10s.xml">
-      <configuration name="CheckNamesTest.removeName" configurationId="JUnit" />
+    <history-entry file="UserListTest_findUser - 2019.06.16 at 20h 43m 39s.xml">
+      <configuration name="UserListTest.findUser" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="CheckNamesTest_addName - 2019.06.02 at 00h 18m 08s.xml">
-      <configuration name="CheckNamesTest.addName" configurationId="JUnit" />
+    <history-entry file="UserListTest_findUser - 2019.06.16 at 20h 45m 12s.xml">
+      <configuration name="UserListTest.findUser" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="CheckNamesTest_addName - 2019.06.02 at 00h 20m 04s.xml">
-      <configuration name="CheckNamesTest.addName" configurationId="JUnit" />
+    <history-entry file="UserListTest_addUser - 2019.06.16 at 20h 45m 20s.xml">
+      <configuration name="UserListTest.addUser" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="CheckNamesTest_addName - 2019.06.02 at 00h 21m 25s.xml">
-      <configuration name="CheckNamesTest.addName" configurationId="JUnit" />
+    <history-entry file="UserListTest_addUser - 2019.06.16 at 20h 46m 03s.xml">
+      <configuration name="UserListTest.addUser" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="CheckNamesTest_removeName - 2019.06.02 at 00h 21m 37s.xml">
-      <configuration name="CheckNamesTest.removeName" configurationId="JUnit" />
+    <history-entry file="UserListTest_addUser - 2019.06.16 at 20h 46m 20s.xml">
+      <configuration name="UserListTest.addUser" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="CheckNamesTest_addName - 2019.06.02 at 22h 48m 36s.xml">
-      <configuration name="CheckNamesTest.addName" configurationId="JUnit" />
+    <history-entry file="UserListTest_findUser - 2019.06.16 at 20h 46m 28s.xml">
+      <configuration name="UserListTest.findUser" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="CheckNamesTest_removeName - 2019.06.02 at 22h 48m 51s.xml">
-      <configuration name="CheckNamesTest.removeName" configurationId="JUnit" />
+    <history-entry file="UserListTest_getUsers_NO_NULL - 2019.06.16 at 20h 52m 39s.xml">
+      <configuration name="UserListTest.getUsers_NO_NULL" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="821" extended-state="6" />
+    <frame x="0" y="23" width="1440" height="813" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27825466" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2074392" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -553,7 +633,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32921812" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.42249656" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.4216366" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -647,13 +727,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/src/test/java/StoryTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="13" column="40" lean-forward="true" selection-start-line="13" selection-start-column="11" selection-end-line="13" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-11.0.2.jdk/Contents/Home/lib/src.zip!/java.base/java/util/Arrays.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -676,13 +749,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/names_file.txt" />
-    <entry file="file://$PROJECT_DIR$/client/src/test/java/CheckNamesTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="83" column="36" lean-forward="true" selection-start-line="83" selection-start-column="36" selection-end-line="83" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/runChatServer/src/main/webapp/index.jsp" />
     <entry file="file://$PROJECT_DIR$/startServer/pom.xml" />
     <entry file="file://$PROJECT_DIR$/runChatServer/pom.xml" />
@@ -690,13 +756,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="37" selection-start-column="20" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="31" selection-start-line="13" selection-start-column="31" selection-end-line="13" selection-end-column="31" />
         </state>
       </provider>
     </entry>
@@ -742,9 +801,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/src/main/resources/events_file.log">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/src/main/resources/names_file.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -752,22 +808,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
           <caret line="17" column="75" selection-start-line="17" selection-start-column="75" selection-end-line="17" selection-end-column="75" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webclient/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="27" column="30" selection-start-line="27" selection-start-column="30" selection-end-line="27" selection-end-column="30" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/network/src/main/java/org/maksim/chakur/network/TCPConnection.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-395">
+        <state relative-caret-position="15">
           <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -775,30 +821,91 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/main/java/org/maksim/chakur/client/Client.java">
+    <entry file="file://$PROJECT_DIR$/webclient/src/main/java/org/maksim/chakur/servlet/WebClient.java" />
+    <entry file="file://$PROJECT_DIR$/server/src/test/java/StoryTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="786">
-          <caret line="112" column="35" selection-start-line="112" selection-start-column="35" selection-end-line="112" selection-end-column="35" />
+        <state relative-caret-position="570">
+          <caret line="43" column="9" lean-forward="true" selection-start-line="13" selection-start-column="11" selection-end-line="13" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/test/java/CheckNamesTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1050">
+          <caret line="83" lean-forward="true" selection-start-line="83" selection-end-line="83" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webclient/src/main/java/org/maksim/chakur/servlet/CheckUser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webclient/src/main/java/org/maksim/chakur/servlet/UserRegistration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webclient/src/main/java/org/maksim/chakur/servlet/AddUser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webclient/src/test/java/org/maksim/chakur/servlet/UserListTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1170">
+          <caret line="78" column="39" selection-start-line="78" selection-start-column="39" selection-end-line="78" selection-end-column="39" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/src/main/java/org/maksim/chakur/server/ConsoleChatServer.java">
+    <entry file="file://$PROJECT_DIR$/webclient/src/main/java/org/maksim/chakur/servlet/User.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4976">
-          <caret line="396" column="35" selection-start-line="396" selection-start-column="35" selection-end-line="396" selection-end-column="35" />
+        <state relative-caret-position="272">
+          <caret line="30" column="37" selection-start-line="30" selection-start-column="37" selection-end-line="30" selection-end-column="37" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#1204#1205#0" expanded="true" />
+            <element signature="e#1257#1258#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webclient/src/main/java/org/maksim/chakur/servlet/WebClient.java">
+    <entry file="file://$PROJECT_DIR$/webclient/src/main/java/org/maksim/chakur/servlet/UserList.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="825">
-          <caret line="55" selection-start-line="55" selection-end-line="55" />
+        <state relative-caret-position="270">
+          <caret line="20" column="52" selection-start-line="20" selection-start-column="52" selection-end-line="20" selection-end-column="52" />
+          <folding>
+            <element signature="e#749#750#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-231">
+          <caret line="13" column="31" selection-start-line="13" selection-start-column="31" selection-end-line="13" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webclient/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="660">
+          <caret line="44" column="38" selection-start-line="44" selection-start-column="38" selection-end-line="44" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webclient/src/main/java/org/maksim/chakur/endpoints/ChatServerEndpoint.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="675">
+          <caret line="47" column="70" selection-start-line="47" selection-start-column="70" selection-end-line="47" selection-end-column="70" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -807,12 +914,33 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/webclient/src/main/java/org/maksim/chakur/servlet/ClientService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-398">
+        <state relative-caret-position="195">
           <caret line="13" column="27" selection-start-line="13" selection-start-column="27" selection-end-line="13" selection-end-column="27" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2453#2454#0" expanded="true" />
-            <element signature="e#2482#2483#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/src/main/java/org/maksim/chakur/server/ConsoleChatServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="22" column="33" lean-forward="true" selection-start-line="22" selection-start-column="33" selection-end-line="22" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/src/main/resources/events_file.log">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/main/java/org/maksim/chakur/client/Client.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="34" lean-forward="true" selection-start-line="13" selection-start-column="34" selection-end-line="13" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

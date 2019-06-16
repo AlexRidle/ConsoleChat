@@ -1,6 +1,5 @@
 package org.maksim.chakur.servlet;
 
-import org.maksim.chakur.client.CheckNames;
 import org.maksim.chakur.network.TCPConnection;
 import org.maksim.chakur.network.TCPConnectionListener;
 
@@ -11,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 public class ClientService implements TCPConnectionListener {
     private static final String HOST = "localhost";
     private static final int PORT = 19000;
-    TCPConnection writer;
+    private TCPConnection connection;
     private String register;
     private String name;
     private ArrayList<String> messages;
@@ -28,13 +27,13 @@ public class ClientService implements TCPConnectionListener {
     @Override
     public void connectionReady(TCPConnection connection, String reg) {
         connection.sendMessage("/register " + this.register + " " + this.name);
-        createWriter(connection);
+        setConnection(connection);
     }
 
     @Override
     public void receiveMessage(TCPConnection connection, String msg) {
         if (msg.equals("/exit")) {
-            CheckNames.removeName(this.name); // Метод работает только при указании полного пути к файлу
+            // CheckNames.removeName(this.name); // Метод работает только при указании полного пути к файлу
             disConnect(connection);
             return;
         }
@@ -111,7 +110,7 @@ public class ClientService implements TCPConnectionListener {
         try {
             new TCPConnection(this, HOST, PORT);
         } catch (IOException e) {
-            System.out.println("TCPConnection Exception: " +e);
+            System.out.println("Connection between Socket and WebSocket was not establish: " +e);
         }
     }
 
@@ -121,10 +120,14 @@ public class ClientService implements TCPConnectionListener {
     		valueTake = true;
     		while(!valueSet) {
     			try {
-					messages.wait(TimeUnit.SECONDS.toMillis(20));
+					messages.wait(TimeUnit.SECONDS.toMillis(30));
 					if(messages.size() == 0) {
-						messages.add("We are sorry, but no one can answer at this moment.");
-						valueSet = true;
+						if (this.connection != null) {
+							messages.add("Ask your question or send your message again.");
+							valueSet = true;
+						} else {
+							return null;
+						}
 					}
 				} catch (InterruptedException e) {
 					e.printStackTrace();
@@ -142,11 +145,15 @@ public class ClientService implements TCPConnectionListener {
         return inputMessage.toString();
     }
     
-    private void createWriter(TCPConnection connection) {
-    	this.writer = connection;
+    private void setConnection(TCPConnection connection) {
+    	this.connection = connection;
     }
     
     public void sendOutputMessage(String msg) {
-    	this.writer.sendMessage(prefix + msg.trim());
+    	if (this.connection != null) {
+    		this.connection.sendMessage(prefix + msg.trim());
+    	} else {
+    		throw new NullPointerException();
+    	}
     }
 }

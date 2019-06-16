@@ -2,19 +2,71 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" version="3.1">
   <display-name>webclient</display-name>
   <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>StartForm.html</welcome-file>
+    <welcome-file>Login.html</welcome-file>
+    <welcome-file>Registration.html</welcome-file>
   </welcome-file-list>
-  
   <servlet>
-        <servlet-name>WebClient</servlet-name>
-        <servlet-class>org.maksim.chakur.servlet.WebClient</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>WebClient</servlet-name>
-        <url-pattern>/org.maksim.chakur.client.Client</url-pattern>
-    </servlet-mapping>
-    
+    <servlet-name>AddUser</servlet-name>
+    <servlet-class>org.maksim.chakur.servlet.AddUser</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddUser</servlet-name>
+    <url-pattern>/Add</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>CheckUser</servlet-name>
+    <servlet-class>org.maksim.chakur.servlet.CheckUser</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CheckUser</servlet-name>
+    <url-pattern>/Check</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>ClientService</servlet-name>
+    <servlet-class>org.maksim.chakur.servlet.ClientService</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ClientService</servlet-name>
+    <url-pattern>/Client</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>Dispatcher</servlet-name>
+    <servlet-class>org.maksim.chakur.servlet.Dispatcher</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Dispatcher</servlet-name>
+    <url-pattern>/Disp</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>User</servlet-name>
+    <servlet-class>org.maksim.chakur.servlet.User</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>User</servlet-name>
+    <url-pattern>/User</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>UserList</servlet-name>
+    <servlet-class>org.maksim.chakur.servlet.UserList</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UserList</servlet-name>
+    <url-pattern>/UserList</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>UserRegistration</servlet-name>
+    <servlet-class>org.maksim.chakur.servlet.UserRegistration</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UserRegistration</servlet-name>
+    <url-pattern>/UserReg</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>ChatServerEndpoint</servlet-name>
+    <servlet-class>org.maksim.chakur.endpoints.ChatServerEndpoint</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ChatServerEndpoint</servlet-name>
+    <url-pattern>/ChatServerEndpoint</url-pattern>
+  </servlet-mapping>  
 </web-app>

@@ -223,6 +223,13 @@ public class ConsoleChatServer implements TCPConnectionListener {
                      будет адресовано данному агенту */
                     if (pair.getValue().equals(msg.substring(1, msg.indexOf("/client")) + " false")) {
                         if (msg.endsWith("/exit")) {
+                        	// Удаляем пропущенные сообщения от данного клиента, при их наличии
+                        	if(customsDeque.contains(connection)) {
+                        		customsDeque.remove(connection);
+                        	}
+                        	if(missedMessages.containsKey(connection)) {
+                        		missedMessages.remove(connection);
+                        	}
                             // Агенту направляется уведомление о разрыве соединения с конкретным клиентом
                             msg = String.format("Unfortunately, %s %s has been disconnected. Try to connect with other client " +
                                             "or input - /exit", customersConnections.get(connection).split(" ")[0],

@@ -1,13 +1,9 @@
-2019-06-09 21:52:14 INFO  ConsoleChatServer:10 - agent Agent registered in the system.
-2019-06-09 21:53:07 INFO  ConsoleChatServer:10 - client Client registered in the system.
-2019-06-09 21:53:07 INFO  ConsoleChatServer:20 - agent Agent started chatting with client Client.
-2019-06-09 21:54:32 INFO  ConsoleChatServer:30 - agent Agent finished chatting with client Client.
-2019-06-09 21:54:47 INFO  ConsoleChatServer:20 - agent Agent started chatting with client Client.
-2019-06-09 21:55:42 INFO  ConsoleChatServer:30 - agent Agent finished chatting with client Client.
-2019-06-09 21:55:42 INFO  ConsoleChatServer:15 - client Client quitted the system.
-2019-06-09 21:55:57 INFO  ConsoleChatServer:15 - agent Agent quitted the system.
-2019-06-09 22:05:22 INFO  ConsoleChatServer:10 - client Client1 registered in the system.
-2019-06-09 22:05:47 INFO  ConsoleChatServer:10 - agent Agent registered in the system.
-2019-06-09 22:05:47 INFO  ConsoleChatServer:20 - agent Agent started chatting with agent Agent.
-2019-06-09 22:07:52 INFO  ConsoleChatServer:30 - agent Agent finished chatting with client Client1.
-2019-06-09 22:07:52 INFO  ConsoleChatServer:15 - client Client1 quitted the system.
+2019-06-16 21:21:30 INFO  ConsoleChatServer:10 - agent Agent registered in the system.
+2019-06-16 21:22:07 INFO  ConsoleChatServer:10 - client Client registered in the system.
+2019-06-16 21:22:07 INFO  ConsoleChatServer:20 - agent Agent started chatting with client Client.
+2019-06-16 21:23:24 INFO  ConsoleChatServer:10 - client Irina registered in the system.
+2019-06-16 21:23:54 INFO  ConsoleChatServer:30 - agent Agent finished chatting with client Client.
+2019-06-16 21:23:54 INFO  ConsoleChatServer:15 - client Client quitted the system.
+2019-06-16 21:24:56 INFO  ConsoleChatServer:30 - agent Agent finished chatting with client Irina.
+2019-06-16 21:25:03 INFO  ConsoleChatServer:15 - client Irina quitted the system.
+2019-06-16 21:25:12 INFO  ConsoleChatServer:15 - agent Agent quitted the system.

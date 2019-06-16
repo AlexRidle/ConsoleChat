@@ -1,2 +1,8 @@
+/Users/maksim/Documents/JavaEE/MavenConsoleChat/webclient/src/main/java/org/maksim/chakur/endpoints/ChatServerEndpoint.java
+/Users/maksim/Documents/JavaEE/MavenConsoleChat/webclient/src/main/java/org/maksim/chakur/servlet/UserRegistration.java
+/Users/maksim/Documents/JavaEE/MavenConsoleChat/webclient/src/main/java/org/maksim/chakur/servlet/CheckUser.java
+/Users/maksim/Documents/JavaEE/MavenConsoleChat/webclient/src/main/java/org/maksim/chakur/servlet/User.java
 /Users/maksim/Documents/JavaEE/MavenConsoleChat/webclient/src/main/java/org/maksim/chakur/servlet/ClientService.java
-/Users/maksim/Documents/JavaEE/MavenConsoleChat/webclient/src/main/java/org/maksim/chakur/servlet/WebClient.java
+/Users/maksim/Documents/JavaEE/MavenConsoleChat/webclient/src/main/java/org/maksim/chakur/servlet/AddUser.java
+/Users/maksim/Documents/JavaEE/MavenConsoleChat/webclient/src/main/java/org/maksim/chakur/servlet/Dispatcher.java
+/Users/maksim/Documents/JavaEE/MavenConsoleChat/webclient/src/main/java/org/maksim/chakur/servlet/UserList.java
