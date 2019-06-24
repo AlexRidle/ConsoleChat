@@ -1,6 +1,6 @@
 package org.maksim.chakur.endpoints;
 
-import javax.websocket.*;
+import javax.websocket.*;//Do not import all classes.
 import javax.websocket.server.ServerEndpoint;
 
 import org.maksim.chakur.servlet.ClientService;
@@ -11,10 +11,10 @@ import java.util.List;
 
 @ServerEndpoint("/websocket")
 public class ChatServerEndpoint {
-    private Session session;
-    private static List<Session> sessionList = new LinkedList<>();
+    private Session session;//This value is not using.
+    private static List<Session> sessionList = new LinkedList<>();//This list is not using.
     private String name;
-	private String character;
+	private String character;//Suspicious name. Better to name it like "Role"
 	private ClientService clientService;
 	private boolean isExecuted;
 
@@ -45,7 +45,7 @@ public class ChatServerEndpoint {
     	if (message.startsWith("/register")) {
     		this.character = message.split(" ")[1];
     		this.name = message.split(" ")[2];
-    		if (!this.character.equals("null") && this.name != null) {
+    		if (!this.character.equals("null") && this.name != null) {//this. is not necessary.
     			clientService = new ClientService(character, name);
             	clientService.createConnection();
             	isExecuted = true;
@@ -69,7 +69,8 @@ public class ChatServerEndpoint {
     		}
     	}
     }
-    
+
+    //This method should be in another class.
     private void receiveMessages(Session session) {
         Thread threadReceiver = new Thread(new Runnable() {
             @Override
