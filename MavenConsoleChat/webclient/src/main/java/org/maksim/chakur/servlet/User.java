@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class User {
 	private String name;
-	private String character;
+	private String character; //Better to create enum "Role" and name this value as Role.
 	private String password;
 	private ClientService clientService;
 	
