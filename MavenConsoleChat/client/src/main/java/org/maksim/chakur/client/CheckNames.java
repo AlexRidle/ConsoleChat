@@ -13,6 +13,8 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.*; //import of all package is a bad practice. Should import only what you need, nothing more.
 
+//Hold current user names in file is a not really good idea.
+
 //This class contains method to check is user name already in list. Also It adds a new user name into file or deletes it after use.
 public class CheckNames { //name of class should be a noun (RegisterService)
 
@@ -91,7 +93,8 @@ public class CheckNames { //name of class should be a noun (RegisterService)
         }*/
 
         if (namesBuilder != null && !namesBuilder.toString().equals("")) {//null checker is useless
-        	namesBuilder.delete(namesBuilder.indexOf(name), namesBuilder.indexOf(name)+name.length()+1);//Formatting! Also can be easier to replace this line with regular expression.
+            //Formatting! Also can be easier to replace this line with regular expression.
+        	namesBuilder.delete(namesBuilder.indexOf(name), namesBuilder.indexOf(name)+name.length()+1);
             byte[]buff = namesBuilder.toString().getBytes();//Formatting!
 
             try(BufferedOutputStream bos = new BufferedOutputStream(Files.newOutputStream(Paths.get(getPath())))) {//Formatting!
@@ -106,13 +109,15 @@ public class CheckNames { //name of class should be a noun (RegisterService)
         }
     }
 
-    //method gets path of file that contains user names
-    private static String getPath() {//what path? Name of the method should be more obvious, like "getPathOf...". This name would be good in another case or if we passed File obj. in params of this method.
+    //Method gets path of file that contains user names.
+    //what path? Name of the method should be more obvious, like "getPathOf...".
+    //This name would be good in another case or if we passed File obj. in params of this method.
+    private static String getPath() {
         File file = new File(PATH);
         StringBuilder pathBuilder = new StringBuilder(); //stringBuilder is not necessary here. Can be a string
         //method of getting absolute path used twice. Think we need to store it in string variable. Unnecessary substring because of stringBuilder
         pathBuilder.append(file.getAbsolutePath().substring(0, file.getAbsolutePath().indexOf("\\MavenConsoleChat")));
         pathBuilder.append(PATH.substring(PATH.indexOf("/MavenConsoleChat")));
-        return pathBuilder.toString();
+        return pathBuilder.toString();//Return can be simplified, if not to use stringBuilder.
     }
 }
