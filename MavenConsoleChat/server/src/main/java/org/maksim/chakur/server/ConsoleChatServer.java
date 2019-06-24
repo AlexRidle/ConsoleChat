@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class ConsoleChatServer implements TCPConnectionListener {
+    //Host and port variables should be located in properties file.
     private static final int PORT = 19000;
     private volatile HashMap<TCPConnection, String> customersConnections;
     private volatile HashMap<TCPConnection, String> agentsConnections;
@@ -42,9 +43,12 @@ public class ConsoleChatServer implements TCPConnectionListener {
     }
 
     @Override
+    //Method is too large. Must be split on some methods.
+    //Bad code readability.
     public synchronized void connectionReady(TCPConnection connection, String reg) {
         if (reg != null && reg.startsWith("/register")) {
             if (reg.split(" ")[1].equals("client")) {
+                //Needs to put this code in getTimestamp method to remove code duplication.
                 String dtime = "(" + new SimpleDateFormat("HH:mm:ss").format(new Date()) + ")";
                 System.out.println(dtime + " Customer " + reg.split(" ")[2] + " is connected. Connection: " +connection);
                 // добавление нового подключения для клиента
@@ -74,7 +78,8 @@ public class ConsoleChatServer implements TCPConnectionListener {
                     connection.sendMessage(dtime + " Congratulations, " + reg.split(" ")[2] + "! " +
                             "You are connected to console chat.");
                 }
-            } else if (reg != null && reg.split(" ")[1].equals("agent")) {
+            } else if (reg != null && reg.split(" ")[1].equals("agent")) { //reg null checker is useless. We already checked it in condition higher.
+                //Code duplication. Line 50.
                 String dtime = "(" + new SimpleDateFormat("HH:mm:ss").format(new Date()) + ")";
                 System.out.println(dtime + " Agent " + reg.split(" ")[2] + " is connected. Connection: " +connection);
                 // Логирование появления в сети агента
@@ -106,7 +111,7 @@ public class ConsoleChatServer implements TCPConnectionListener {
                             break;
                         }
 
-                        if (customsDeque.size() == 0) {
+                        if (customsDeque.size() == 0) {//we can move this checker out of the loop to remove unnecessary operation.
                             // устанавливаем статус для агента - доступен, при отсутствии не отвеченных писем
                             agentsConnections.replace(connection, agentsConnections.get(connection), reg.substring(10) + " true");
                             connection.sendMessage(dtime + " Congratulations, " + reg.split(" ")[2] + "! " +
@@ -124,22 +129,21 @@ public class ConsoleChatServer implements TCPConnectionListener {
     }
 
     @Override
+    //Method is too large. Must be split on some methods.
+    //Bad code readability.
     public synchronized void receiveMessage(TCPConnection connection, String msg) {
         if (msg != null) {
             if (msg.equals("/exit")) {
                 if (customersConnections.containsKey(connection)) {
-                    // логирование выхода клиента из системы
-                    eventsLogger.logDisconnect(customersConnections.get(connection));
+                    eventsLogger.logDisconnect(customersConnections.get(connection)); // логирование выхода клиента из системы
                     if (customsDeque.contains(connection)) {
-                        Story story = missedMessages.get(connection);
-                        // логирование пропущенных от клиента сообщений
+                        Story story = missedMessages.get(connection); // логирование пропущенных от клиента сообщений
                         eventsLogger.logLostMessages(customersConnections.get(connection), story.printStory());
                         customsDeque.remove(connection);
                         missedMessages.remove(connection);
                     }
                 } else if (agentsConnections.containsKey(connection)) {
-                    // логирование выхода агента из системы
-                    eventsLogger.logDisconnect(agentsConnections.get(connection).replace(" true", ""));
+                    eventsLogger.logDisconnect(agentsConnections.get(connection).replace(" true", "")); // логирование выхода агента из системы
                 }
                 disConnect(connection);
                 connection.sendMessage(msg);
@@ -150,6 +154,7 @@ public class ConsoleChatServer implements TCPConnectionListener {
                 for (Map.Entry<TCPConnection, String> pair : customersConnections.entrySet()) {
                     // из мапы по имени находим клиента, которому адресовано сообщение
                     if (pair.getValue().equals(msg.substring(1, msg.indexOf("/agent")))) {
+                        //Much /exit checkers. Remove code duplication.
                         if (msg.endsWith("/exit")) {
                             msg = String.format("Unfortunately, %s %s has been disconnected. Try to connect with other agent " +
                                             "or input - /exit", agentsConnections.get(connection).split(" ")[0],
@@ -248,6 +253,7 @@ public class ConsoleChatServer implements TCPConnectionListener {
                             // из клиентской коллекции удаляется информация о соединении с этим клиентом, от которого пришло письмо
                             disConnect(connection);
 
+                            //Code duplicate. Must be in different method.
                             if (agentsConnections.containsKey(pair.getKey()) && customsDeque.size() > 0) {
                                 String agentName = pair.getValue().substring(0, pair.getValue().indexOf(" false"));
                                 while (customsDeque.size() > 0) {
@@ -290,6 +296,7 @@ public class ConsoleChatServer implements TCPConnectionListener {
                                 eventsLogger.logFinishingChat(agentName, customersConnections.get(connection));
                             }
 
+                            //Code duplicate. Line 253.
                             if (agentsConnections.containsKey(pair.getKey()) && customsDeque.size() > 0) {
                                 String agentName = pair.getValue().substring(0, pair.getValue().indexOf(" false"));
                                 while (customsDeque.size() > 0) {
@@ -370,19 +377,23 @@ public class ConsoleChatServer implements TCPConnectionListener {
 
     @Override
     public synchronized void disConnect(TCPConnection connection) {
+        //Code duplicate. Variable dtime used twice for same result. Write it out of the condition body.
+        //Suspicious "if-elseif" construction.
         if (customersConnections.containsKey(connection)) {
-            String dtime = "(" + new SimpleDateFormat("HH:mm:ss").format(new Date()) + ")";
+            String dtime = "(" + new SimpleDateFormat("HH:mm:ss").format(new Date()) + ")"; //Should create special method for a timestamp.
             System.out.println(dtime + " User " + customersConnections.get(connection) + " is disconnected " +connection);
             customersConnections.remove(connection);
         } else if (agentsConnections.containsKey(connection)) {
-            String dtime = "(" + new SimpleDateFormat("HH:mm:ss").format(new Date()) + ")";
-            System.out.println(dtime + " User " + agentsConnections.get(connection) + " is disconnected " +connection);
+            String dtime = "(" + new SimpleDateFormat("HH:mm:ss").format(new Date()) + ")"; //Should create special method for a timestamp.
+            System.out.println(dtime + " User " + agentsConnections.get(connection) + " is disconnected " +connection);//Use String.format.
             agentsConnections.remove(connection);
         }
     }
 
+    //Don't need to comment every line. If methods and variables named correctly, it already will be readable code.
     @Override
     public synchronized void occurException(TCPConnection connection, Exception e) {
+        //Suspicious "if-elseif" construction.
         if (customersConnections.containsKey(connection)) {
             // логируем выход клиента из системы в результате возникшего исключения
             eventsLogger.logExceptionDisconnect(customersConnections.get(connection));
@@ -404,6 +415,7 @@ public class ConsoleChatServer implements TCPConnectionListener {
         System.out.println("Server TCPConnection Exception: " +e);
     }
 
+    //Name of method should be "getFreeAgent".
     private TCPConnection getAgent() {
         for (Map.Entry<TCPConnection, String> pair : agentsConnections.entrySet()) {
             if (pair.getValue().endsWith("true")) {
