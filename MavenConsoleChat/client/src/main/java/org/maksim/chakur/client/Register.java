@@ -1,6 +1,6 @@
 package org.maksim.chakur.client;
 
-public enum Register {
+public enum Register {//Wrong name of class. Should be "Role"
     CLIENT ("client"),
     AGENT ("agent");
 
