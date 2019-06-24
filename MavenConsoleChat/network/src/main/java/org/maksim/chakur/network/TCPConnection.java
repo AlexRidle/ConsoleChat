@@ -1,16 +1,18 @@
 package org.maksim.chakur.network;
 
-import java.io.*;
+import java.io.*;//import of all package is a bad practice. Should import only what you need, nothing more.
 import java.net.Socket;
 import java.nio.charset.Charset;
 
-public class TCPConnection {
+
+public class TCPConnection {//Should be named "TCPConnectionImpl.
     private final Socket socket;
     /*
      Поток, слушающий входящие сообщения. У нас имеется один поток на каждом клиенте, который слушает входящее соединение,
      постоянно читает поток ввода, и если получена строка, то поток генерирует событие (у нас событийная система)
       */
-    private final Thread threadListener;
+    //Code in thread must be in class that implements runnable and have name "MessageReceiver".
+    private final Thread threadListener;//Wrong name of variable. Should be named like "MessageReceiver".
     // слушатель событий
     private final TCPConnectionListener eventListener;
     private final BufferedReader in;
@@ -34,6 +36,7 @@ public class TCPConnection {
         // у объекта класса Socket получаем исходящий поток, чтобы писать байты
         out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream(), Charset.forName("UTF-8")));
         // создаем новый поток, слушающий все входящие сообщения
+        //Message receiver should be located in different class.
         threadListener = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -79,6 +82,6 @@ public class TCPConnection {
 
     @Override
     public String toString() {
-        return "org.maksim.chakur.network.TCPConnection: " + socket.getInetAddress() + ": " + socket.getPort();
+        return "org.maksim.chakur.network.TCPConnection: " + socket.getInetAddress() + ": " + socket.getPort();//Use String.format method.
     }
 }
