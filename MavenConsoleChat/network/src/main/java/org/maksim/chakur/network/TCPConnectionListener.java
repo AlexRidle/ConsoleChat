@@ -1,4 +1,7 @@
 package org.maksim.chakur.network;
+
+//Class is not a place for this notes.
+
 /*
 Задание №1. Консольный чат.
 
@@ -53,8 +56,10 @@ package org.maksim.chakur.network;
 чтобы консольный агент мог общаться с веб-клиентами и консольные клиенты могли общаться с веб-агентами.
  */
 
+//Suspicious name of class. Should be named like "TCPConnection.
 public interface TCPConnectionListener {
 	///Users/maksim/Documents/JavaEE/MavenConsoleChat/client/src/main/resources/names_file.txt
+    //Words in name of value are not separated (should be NAMES_FILES_PATH). Also this file and value name should be name more correctly
     String NAMESFILEPATH = "../MavenConsoleChat/client/src/main/resources/names_file.txt";
     void connectionReady(TCPConnection connection, String reg);
     void receiveMessage(TCPConnection connection, String msg);
