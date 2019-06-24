@@ -39,6 +39,7 @@ public class ClientService implements TCPConnectionListener {
         }
         // Если строка получена от клиента
         if (msg.startsWith("/client")) {
+        	//Code duplication. Must be moved to another method.
             if (!"".equals(msg.substring(msg.indexOf(':')+1))) {
             	// Формируем префиксную строку для идентификации нашего клиента на сервере
                 String formatAgent = msg.substring(0, msg.indexOf(':')) + String.format("/%s %s: ", register, name);
@@ -60,6 +61,7 @@ public class ClientService implements TCPConnectionListener {
             
             // Если строка получена от агента
         } else if (msg.startsWith("/agent")) {
+        	//Code duplication. Line 43.
             if (!"".equals(msg.substring(msg.indexOf(':')+1))) {
             	// Формируем префиксную строку для идентификации нашего агента на сервере
                 String formatClient = msg.substring(0, msg.indexOf(':')) + String.format("/%s %s: ", register, name);
@@ -80,7 +82,8 @@ public class ClientService implements TCPConnectionListener {
             }
         } else {
         	prefix = "";
-        	synchronized(messages) {
+			//Code duplication. Line 43.
+			synchronized(messages) {
             	while (valueSet) {
         			try {
     					messages.wait(1000);
@@ -115,7 +118,7 @@ public class ClientService implements TCPConnectionListener {
     }
 
     public String getMessage() {
-    	StringBuffer inputMessage = new StringBuffer();
+    	StringBuffer inputMessage = new StringBuffer();//In this case better to use StringBuilder.
     	synchronized (messages) {
     		valueTake = true;
     		while(!valueSet) {
@@ -150,7 +153,7 @@ public class ClientService implements TCPConnectionListener {
     }
     
     public void sendOutputMessage(String msg) {
-    	if (this.connection != null) {
+    	if (this.connection != null) {//this. is not necessary.
     		this.connection.sendMessage(prefix + msg.trim());
     	} else {
     		throw new NullPointerException();
